@@ -22,10 +22,10 @@ public class LogFilter implements Serializable, GlobalFilter, Ordered{
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		
 		ServerHttpRequest request = exchange.getRequest();
-		
+
 		StringBuilder logRequest = new StringBuilder();
-		logRequest.append("[").append(LocalDateTime.now()).append("] ");		
-		logRequest.append(" REQUEST => URI: ").append(exchange.getRequest().getPath());
+		logRequest.append("[").append(LocalDateTime.now()).append("] ");				
+		logRequest.append(" REQUEST => URI: ").append(request.getPath());
 		logRequest.append(" Status: ").append(exchange.getResponse().getStatusCode());
 		
 		System.out.println(logRequest);
@@ -37,7 +37,7 @@ public class LogFilter implements Serializable, GlobalFilter, Ordered{
 	    			
 	    		StringBuilder logResponse = new StringBuilder();
 	    		logResponse.append("[").append(LocalDateTime.now()).append("]");	    			
-	    		logResponse.append(" RESPONSE => URI: ").append(exchange.getRequest().getPath());    			
+	    		logResponse.append(" RESPONSE => URI: ").append(exchange.getRequest().getPath());
 	    		logResponse.append(" Status: ").append(response.getStatusCode());
 
 	    		System.out.println(logResponse);

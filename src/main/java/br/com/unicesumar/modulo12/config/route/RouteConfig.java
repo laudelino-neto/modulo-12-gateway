@@ -22,14 +22,14 @@ public class RouteConfig implements Serializable{
 	@Bean
 	public RouteLocator redirectRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route("toFinanceiroAPI", r -> 
+				.route("toClienteAPI", r -> 
 					r.path(urlGatewayCliente + "/**")			
-		            .filters(f -> f.stripPrefix(2))		            
-					.uri("lb://CLIENTE-API"))
-				.route("toMktplaceAPI", r -> 
+		            .filters(f -> f.stripPrefix(1)) 
+					.uri("lb://MODULO-12-CLIENTES-API"))
+				.route("toFornecedorAPI", r -> 
 					r.path(urlGatewayFornecedor + "/**")			
-		            .filters(f -> f.stripPrefix(2))		            
-					.uri("lb://FORNECEDOR-API"))
+		            .filters(f -> f.stripPrefix(1))		            
+					.uri("lb://MODULO-12-FORNECEDORES-API"))
 				.build();
 	}
 	
